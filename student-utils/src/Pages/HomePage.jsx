@@ -87,54 +87,49 @@ const HomePage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((category) => {
             const IconComponent = category.icon;
-            return (
+            const cardClasses = `backdrop-blur-sm border rounded-xl p-6 transition-all group h-full ${
+              isDark
+                ? "bg-slate-800/50 border-slate-700 hover:bg-slate-700/50 hover:border-slate-600"
+                : "bg-white border-gray-200 hover:bg-gray-50 hover:border-gray-300"
+            }`;
+
+            const content = (
+              <>
+                <IconComponent className="w-12 h-12 text-blue-400 mb-4" />
+                <h3
+                  className={`text-lg sm:text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {category.title}
+                </h3>
+                <p
+                  className={`text-sm ${
+                    isDark ? "text-slate-400" : "text-gray-600"
+                  }`}
+                >
+                  {category.desc ??
+                    `View all ${category.title.toLowerCase()} tools`}
+                </p>
+              </>
+            );
+
+            return category.path ? (
+              <Link
+                to={category.path}
+                key={category.id}
+                className={cardClasses}
+                role="link"
+              >
+                {content}
+              </Link>
+            ) : (
               <div
                 key={category.id}
-                className={`backdrop-blur-sm border rounded-xl p-6 transition-all cursor-pointer group ${
-                  isDark
-                    ? "bg-slate-800/50 border-slate-700 hover:bg-slate-700/50 hover:border-slate-600"
-                    : "bg-white border-gray-200 hover:bg-gray-50 hover:border-gray-300"
-                }`}
+                className={cardClasses}
+                role="presentation"
               >
-                {category.path ? (
-                  <Link to={category.path} className="block h-full">
-                    <IconComponent className="w-12 h-12 text-blue-400 mb-4" />
-                    <h3
-                      className={`text-lg sm:text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors ${
-                        isDark ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {category.title}
-                    </h3>
-                    <p
-                      className={`text-sm ${
-                        isDark ? "text-slate-400" : "text-gray-600"
-                      }`}
-                    >
-                      {category.desc ??
-                        `View all ${category.title.toLowerCase()} tools`}
-                    </p>
-                  </Link>
-                ) : (
-                  <>
-                    <IconComponent className="w-12 h-12 text-blue-400 mb-4" />
-                    <h3
-                      className={`text-lg sm:text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors ${
-                        isDark ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {category.title}
-                    </h3>
-                    <p
-                      className={`text-sm ${
-                        isDark ? "text-slate-400" : "text-gray-600"
-                      }`}
-                    >
-                      {category.desc ??
-                        `View all ${category.title.toLowerCase()} tools`}
-                    </p>
-                  </>
-                )}
+                {content}
               </div>
             );
           })}
