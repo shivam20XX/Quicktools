@@ -11,7 +11,8 @@ const HomePage = () => {
       id: 1,
       title: "PDF",
       icon: FileText,
-      desc: "Compress, merge, split, and secure PDFs quickly.",
+      desc: "Merge, split, rotate, and secure PDFs quickly.",
+      path: "/tools/pdf",
     },
     {
       id: 2,
