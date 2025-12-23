@@ -26,7 +26,7 @@ const Footer = () => {
               isDark ? "text-slate-300" : "text-gray-600"
             }`}
           >
-            StudentWow provides free online tools to help with everyday student
+            QuickTools provides free online tools to help with everyday student
             tasks like attendance calculations, working with PDFs, and quick
             image utilities. All tools run in your browser.
           </p>
