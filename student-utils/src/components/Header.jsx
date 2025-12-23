@@ -119,7 +119,7 @@ const Header = () => {
 
       {/* Main Header */}
       <header
-        className={`backdrop-blur-sm border-b sticky top-0 z-40 ${
+        className={`backdrop-blur-sm  sticky top-0 z-40 ${
           isDark
             ? "border-slate-700 bg-slate-900/95"
             : "border-gray-200 bg-white/95"
