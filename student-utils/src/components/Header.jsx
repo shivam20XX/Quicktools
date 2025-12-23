@@ -118,7 +118,13 @@ const Header = () => {
       )}
 
       {/* Main Header */}
-      <header className="backdrop-blur-sm border-slate-700 sticky top-0 z-40">
+      <header
+        className={`backdrop-blur-sm border-b sticky top-0 z-40 ${
+          isDark
+            ? "border-slate-700 bg-slate-900/95"
+            : "border-gray-200 bg-white/95"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo and Brand */}
           <Link to="/" className="flex items-center gap-3">
@@ -140,7 +146,13 @@ const Header = () => {
           <nav className="hidden lg:flex gap-8 items-center flex-1 justify-center">
             {categories.map((category) => {
               const content = (
-                <span className="text-white hover:text-blue-400 font-medium transition-colors cursor-pointer">
+                <span
+                  className={`font-medium transition-colors cursor-pointer ${
+                    isDark
+                      ? "text-white hover:text-blue-400"
+                      : "text-gray-900 hover:text-blue-600"
+                  }`}
+                >
                   {category.title}
                 </span>
               );
@@ -173,7 +185,11 @@ const Header = () => {
             </div> */}
             <button
               onClick={toggleTheme}
-              className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className={`transition-colors cursor-pointer ${
+                isDark
+                  ? "text-slate-400 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
               aria-label="Toggle theme"
             >
               {isDark ? (
@@ -182,13 +198,21 @@ const Header = () => {
                 <Moon className="w-5 h-5" />
               )}
             </button>
-            <button className="text-slate-400 hover:text-white transition-colors cursor-pointer">
+            <button
+              className={`transition-colors cursor-pointer ${
+                isDark
+                  ? "text-slate-400 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
               <Share2 className="w-5 h-5" />
             </button>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden text-white p-2 cursor-pointer"
+              className={`lg:hidden p-2 cursor-pointer ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
             >
               <Menu className="w-6 h-6" />
             </button>
