@@ -70,7 +70,7 @@ const Footer = () => {
             isDark ? "text-slate-500" : "text-gray-500"
           }`}
         >
-          © {new Date().getFullYear()} StudentWow. All rights reserved.
+          © {new Date().getFullYear()} QuickTools. All rights reserved.
         </p>
       </div>
     </footer>
