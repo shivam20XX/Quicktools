@@ -21,7 +21,7 @@ const Header = () => {
   const { isDark, toggleTheme } = useTheme();
 
   const categories = [
-    { id: 1, title: "PDF", icon: FileText },
+    { id: 1, title: "PDF", icon: FileText, path: "/tools/pdf" },
     { id: 2, title: "Image", icon: Image },
     { id: 3, title: "Write", icon: PenTool },
     { id: 4, title: "Video", icon: Video },

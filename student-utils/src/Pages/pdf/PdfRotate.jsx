@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "../../context/ThemeContext";
 
-const PdfMerge = () => {
+const PdfRotate = () => {
   const { isDark } = useTheme();
 
   return (
@@ -12,11 +12,11 @@ const PdfMerge = () => {
             isDark ? "text-white" : "text-gray-900"
           }`}
         >
-          Merge PDF
+          Rotate PDF
         </h1>
         <p className={`${isDark ? "text-slate-300" : "text-gray-600"} mb-8`}>
-          Combine multiple PDF files into one. This tool processes files in your
-          browser—no uploads required.
+          Turn pages clockwise or counterclockwise to fix sideways documents.
+          Everything runs locally in your browser.
         </p>
         <div
           className={`rounded-2xl border p-6 ${
@@ -26,7 +26,7 @@ const PdfMerge = () => {
           }`}
         >
           <p className={isDark ? "text-slate-300" : "text-gray-700"}>
-            PDF merge functionality coming soon.
+            PDF rotate functionality coming soon.
           </p>
         </div>
       </section>
@@ -34,4 +34,4 @@ const PdfMerge = () => {
   );
 };
 
-export default PdfMerge;
+export default PdfRotate;
