@@ -5,7 +5,7 @@
 A lightweight web app providing essential utilities for PDF manipulation, image processing, and student-focused tools.
 
 ## 🚀 Live Demo
-[quicktools-utils.vercel.app](https://quicktools-utils.vercel.app/)
+Live demo can be found at [quicktools-utils.vercel.app](https://quicktools-utils.vercel.app/) (currently work in progress)
 
 ## 🛠️ Tech Stack
 - **React 19** + **Vite** - Fast, modern frontend
