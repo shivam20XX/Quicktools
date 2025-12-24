@@ -39,4 +39,4 @@ Open source - free to use and modify
 
 ---
 
-Built with ❤️ by [@shivam20XX](https://github.com/shivam20XX)
+Built with ❤️ and by privacy concern.
