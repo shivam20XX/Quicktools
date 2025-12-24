@@ -22,8 +22,16 @@ const PdfTools = () => {
     {
       id: "rotate",
       title: "Rotate PDF",
-      description: "Fix sideways pages with quick left/right rotations.",
+      description:
+        "Fix sideways or annoyingly merge pages with quick left/right rotations.",
       path: "/tools/pdf/rotate",
+    },
+    {
+      id: "jpg-to-pdf",
+      title: "JPG to PDF",
+      description:
+        "Convert one or multiple JPG images into a single PDF document.",
+      path: "/tools/pdf/jpg-to-pdf",
     },
   ];
 
