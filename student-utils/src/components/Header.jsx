@@ -125,21 +125,21 @@ const Header = () => {
             : "border-gray-200 bg-white/95"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-2 py-4 flex items-center justify-between">
           {/* Logo and Brand */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white text-xl font-bold">S</span>
-            </div>
-            <div className="hidden sm:block">
-              <h3
-                className={`text-2xl font-bold ${
-                  isDark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Quick<span className="text-orange-400">Tools</span>
-              </h3>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/logo.svg"
+              alt="QuickTools logo"
+              className="block h-10 w-10"
+            />
+            <span
+              className={`ml-1 font-bold text-lg leading-none ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
+              Quick<span className="text-orange-500">Tools</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background -->
+  <rect width="100" height="100" rx="20" fill="#2563eb"/>
+
+  <!-- Tool grid -->
+  <rect x="22" y="22" width="20" height="20" rx="5" fill="white"/>
+  <rect x="58" y="22" width="20" height="20" rx="5" fill="white"/>
+  <rect x="22" y="58" width="20" height="20" rx="5" fill="white"/>
+
+  <!-- Lightning bolt (quick) -->
+  <path
+    d="M60 52 L46 78 L58 78 L52 94 L80 60 L66 60 Z"
+    fill="white"
+  />
+</svg>
