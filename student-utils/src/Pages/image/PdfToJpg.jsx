@@ -29,7 +29,7 @@ const PdfToJpg = () => {
       setImages([]);
       setProgress(0);
     } else {
-      setError("Please select a valid PDF file");
+      setError("Please select a valid PDF file to proceed");
       setFile(null);
     }
   };
