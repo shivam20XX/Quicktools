@@ -18,14 +18,38 @@ import {
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openCategories, setOpenCategories] = useState({});
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const { isDark, toggleTheme } = useTheme();
 
   const categories = [
-    { id: 1, title: "PDF", icon: FileText, path: "/tools/pdf" },
-    { id: 2, title: "Image", icon: Image },
-    { id: 3, title: "Write", icon: PenTool },
-    { id: 4, title: "Video", icon: Video },
-    { id: 5, title: "File", icon: Folder },
+    {
+      id: 1,
+      title: "PDF",
+      icon: FileText,
+      path: "/tools/pdf",
+      tools: [
+        { name: "Merge PDF", path: "/tools/pdf/merge" },
+        { name: "Split PDF", path: "/tools/pdf/split" },
+        { name: "Rotate PDF", path: "/tools/pdf/rotate" },
+        { name: "JPG to PDF", path: "/tools/pdf/jpg-to-pdf" },
+        { name: "Compress PDF", path: "/tools/pdf/compress" },
+      ],
+    },
+    {
+      id: 2,
+      title: "Image",
+      icon: Image,
+      path: "/tools/image",
+      tools: [
+        { name: "Compress Image", path: "/tools/image/compress" },
+        { name: "Resize Image", path: "/tools/image/resize" },
+        { name: "Convert Image", path: "/tools/image/convert" },
+        { name: "PDF to JPG", path: "/tools/image/pdf-to-jpg" },
+      ],
+    },
+    { id: 3, title: "Write", icon: PenTool, tools: [] },
+    { id: 4, title: "Video", icon: Video, tools: [] },
+    { id: 5, title: "File", icon: Folder, tools: [] },
   ];
 
   const toggleCategory = (id) => {
@@ -84,32 +108,36 @@ const Header = () => {
             <nav className="space-y-1">
               {categories.map((category) => (
                 <div key={category.id}>
-                  {category.path ? (
-                    <Link
-                      to={category.path}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer"
-                    >
-                      <span className="text-lg font-medium">
-                        {category.title}
-                      </span>
-                      <ChevronDown className="w-5 h-5 text-slate-400" />
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => toggleCategory(category.id)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer"
-                    >
-                      <span className="text-lg font-medium">
-                        {category.title}
-                      </span>
-                      <ChevronDown
-                        className={`w-5 h-5 text-slate-400 transition-transform ${
-                          openCategories[category.id] ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                  )}
+                  <button
+                    onClick={() => toggleCategory(category.id)}
+                    className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-slate-700/50 rounded-lg transition-colors cursor-pointer"
+                  >
+                    <span className="text-lg font-medium">
+                      {category.title}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-slate-400 transition-transform ${
+                        openCategories[category.id] ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Mobile Submenu */}
+                  {openCategories[category.id] &&
+                    category.tools?.length > 0 && (
+                      <div className="ml-4 mt-1 space-y-1">
+                        {category.tools.map((tool, index) => (
+                          <Link
+                            key={index}
+                            to={tool.path}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors text-sm"
+                          >
+                            {tool.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                 </div>
               ))}
             </nav>
@@ -144,31 +172,63 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex gap-8 items-center flex-1 justify-center">
-            {categories.map((category) => {
-              const content = (
-                <span
-                  className={`font-medium transition-colors cursor-pointer ${
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className="relative"
+                onMouseEnter={() =>
+                  category.tools?.length > 0 && setActiveDropdown(category.id)
+                }
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link
+                  to={category.path || "#"}
+                  className={`font-medium transition-colors cursor-pointer flex items-center gap-1 ${
                     isDark
                       ? "text-white hover:text-blue-400"
                       : "text-gray-900 hover:text-blue-600"
                   }`}
                 >
                   {category.title}
-                </span>
-              );
-
-              return category.path ? (
-                <Link
-                  key={category.id}
-                  to={category.path}
-                  className="inline-flex items-center"
-                >
-                  {content}
+                  {category.tools?.length > 0 && (
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${
+                        activeDropdown === category.id ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
                 </Link>
-              ) : (
-                <span key={category.id}>{content}</span>
-              );
-            })}
+
+                {/* Dropdown Menu */}
+                {category.tools?.length > 0 &&
+                  activeDropdown === category.id && (
+                    <div className={`absolute top-full left-0 pt-2`}>
+                      <div
+                        className={`w-48 rounded-lg shadow-xl border overflow-hidden ${
+                          isDark
+                            ? "bg-slate-800 border-slate-700"
+                            : "bg-white border-gray-200"
+                        }`}
+                      >
+                        {category.tools.map((tool, index) => (
+                          <Link
+                            key={index}
+                            to={tool.path}
+                            onClick={() => setActiveDropdown(null)}
+                            className={`block px-4 py-3 text-sm transition-colors ${
+                              isDark
+                                ? "text-slate-300 hover:bg-slate-700 hover:text-white"
+                                : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                            }`}
+                          >
+                            {tool.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+              </div>
+            ))}
           </nav>
 
           {/* Right side items */}

@@ -1,50 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
-import { Merge, Split, RotateCw, FileImage, Minimize2 } from "lucide-react";
+import {
+  Minimize2,
+  Crop,
+  Image as ImageIcon,
+  Sparkles,
+  FileText,
+} from "lucide-react";
 
-const PdfTools = () => {
+const ImageTools = () => {
   const { isDark } = useTheme();
 
   const tools = [
     {
-      id: "merge",
-      title: "Merge PDF",
-      description: "Combine multiple PDF files into one organized document.",
-      path: "/tools/pdf/merge",
-      icon: Merge,
-    },
-    {
-      id: "split",
-      title: "Split PDF",
-      description:
-        "Extract pages or break a PDF into smaller files effortlessly.",
-      path: "/tools/pdf/split",
-      icon: Split,
-    },
-    {
-      id: "rotate",
-      title: "Rotate PDF",
-      description:
-        "Fix sideways or annoyingly merge pages with quick left/right rotations.",
-      path: "/tools/pdf/rotate",
-      icon: RotateCw,
-    },
-    {
-      id: "jpg-to-pdf",
-      title: "JPG/PNG to PDF",
-      description:
-        "Convert one or multiple JPG images into a single PDF document.",
-      path: "/tools/pdf/jpg-to-pdf",
-      icon: FileImage,
-    },
-    {
       id: "compress",
-      title: "Compress PDF",
+      title: "Compress Image",
       description:
-        "Reduce PDF file size while maintaining quality and readability.",
-      path: "/tools/pdf/compress",
+        "Reduce image file size while preserving quality for faster loading.",
+      path: "/tools/image/compress",
       icon: Minimize2,
+    },
+    {
+      id: "resize",
+      title: "Resize Image",
+      description: "Change image dimensions and scale to any size you need.",
+      path: "/tools/image/resize",
+      icon: Crop,
+    },
+    {
+      id: "convert",
+      title: "Convert Image",
+      description: "Convert between JPG, PNG, WebP, and other image formats.",
+      path: "/tools/image/convert",
+      icon: ImageIcon,
+    },
+    {
+      id: "pdf-to-jpg",
+      title: "PDF to JPG",
+      description:
+        "Convert each page of your PDF document into high-quality JPG images.",
+      path: "/tools/image/pdf-to-jpg",
+      icon: FileText,
+    },
+    {
+      id: "optimize",
+      title: "Optimize Image",
+      description:
+        "Auto-optimize images for web with best quality and size balance.",
+      icon: Sparkles,
     },
   ];
 
@@ -57,22 +61,22 @@ const PdfTools = () => {
               isDark ? "text-blue-300" : "text-blue-600"
             }`}
           >
-            PDF Toolkit
+            Image Toolkit
           </p>
           <h1
             className={`text-3xl sm:text-4xl font-bold mb-4 ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
-            Work with PDFs in your browser
+            Work with Images in your browser
           </h1>
           <p
             className={`${
               isDark ? "text-slate-300" : "text-gray-600"
             } max-w-2xl`}
           >
-            Simple, fast tools to manage your PDFs. No uploads required—your
-            files stay on your device.
+            Fast, secure tools to compress, resize, and convert images. All
+            processing happens locally.
           </p>
         </div>
 
@@ -82,12 +86,12 @@ const PdfTools = () => {
             return (
               <Link
                 key={tool.id}
-                to={tool.path}
+                to={tool.path || "#"}
                 className={`rounded-2xl border p-6 flex flex-col justify-between h-full transition-all hover:scale-105 cursor-pointer ${
                   isDark
                     ? "border-slate-700 bg-slate-800/70 hover:border-slate-500 hover:bg-slate-700/70"
                     : "border-gray-200 bg-white hover:border-blue-300 shadow-sm hover:shadow-md"
-                }`}
+                } ${!tool.path ? "opacity-50 cursor-not-allowed" : ""}`}
               >
                 <div>
                   <IconComponent
@@ -117,4 +121,4 @@ const PdfTools = () => {
   );
 };
 
-export default PdfTools;
+export default ImageTools;

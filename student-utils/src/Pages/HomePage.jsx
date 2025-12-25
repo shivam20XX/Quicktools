@@ -19,6 +19,7 @@ const HomePage = () => {
       title: "Image",
       icon: Image,
       desc: "Resize, convert, and optimize images in seconds.",
+      path: "/tools/image",
     },
     {
       id: 3,
