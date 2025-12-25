@@ -10,7 +10,7 @@ import PdfMerge from "./Pages/pdf/PdfMerge";
 import PdfSplit from "./Pages/pdf/PdfSplit";
 import PdfRotate from "./Pages/pdf/PdfRotate";
 import JpgToPdf from "./Pages/pdf/jpgtoPdf";
-import PdfCompress from "./Pages/pdf/pdfCompress";
+import PdfCompress from "./Pages/pdf/PdfCompress";
 import ImageTools from "./Pages/image/ImageTools";
 import ImageCompress from "./Pages/image/ImageCompress";
 import ImageResize from "./Pages/image/ImageResize";
